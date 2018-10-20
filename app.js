@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.render('index');
 });
 
 app.listen(port, () => {
