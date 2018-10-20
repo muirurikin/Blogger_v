@@ -1,5 +1,16 @@
 const express = require('express');
+const path = require('path');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+const localStrategy = require('passport-local');
+const passportLocalMongoose = require('passport-local-mongoose');
+
 const app = express();
+
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, 'public')));
 
 const port = 3000;
 
