@@ -6,6 +6,10 @@ const bodyParser = require('body-parser');
 const localStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+const config = require('./config/config');
+
+mongoose.connect(config.MONGODB_URI);
+
 const User = require('./models/user');
 const Post = require('./models/blogpost');
 const routes = require('./routes/index');
@@ -13,14 +17,30 @@ const postRoutes = require('./routes/blogposts');
 
 const app = express();
 
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('express-session')({
+  secret: config.secret,
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use('/', routes);
 app.use('/posts', postRoutes);
 
-const port = 3000;
+const port = config.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Express app listening on port ${port}!`);
