@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const localStrategy = require('passport-local');
 const passportLocalMongoose = require('passport-local-mongoose');
 
+const User = require('./models/user');
+
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
