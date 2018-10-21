@@ -8,6 +8,7 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const User = require('./models/user');
 const Post = require('./models/blogpost');
+const routes = require('./routes/index');
 
 const app = express();
 
@@ -15,11 +16,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', routes);
 const port = 3000;
-
-app.get('/', (req, res) => {
-  res.render('index');
-});
 
 app.listen(port, () => {
   console.log(`Express app listening on port ${port}!`);
