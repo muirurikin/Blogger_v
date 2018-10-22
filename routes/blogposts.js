@@ -1,8 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
+const Post = require('../models/blogpost');
+
 router.get('/', (req, res) => {
-    res.render('blogs/posts');
+    // Post.getPosts(function(err, posts){
+    //     if (err) {
+	// 		console.log(err);
+    //     } else {
+	// 		res.render('blogs/posts', {posts: posts});
+	// 	}
+    // });
 });
 
 router.get('/new', (req, res) => {
@@ -10,7 +18,18 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    res.send('You reached the post route');
+	let post = {
+		title: req.body.title,
+		author: req.body.author,
+		body: req.body.pbody
+	}
+	Post.addPost(post, function(err, post) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.send(`You reached the Post Route ${post}`);
+		}
+	});
 });
 
 router.get('/:id', (req, res) => {

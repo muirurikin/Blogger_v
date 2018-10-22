@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const postSchema = new mongoose.Schema({
+const postSchema = mongoose.Schema({
     title: String,
     author: String,
     body: String,
@@ -12,4 +12,12 @@ const postSchema = new mongoose.Schema({
 });
 
 postSchema.plugin(passportLocalMongoose);
-module.exports = mongoose.model('Post', postSchema);
+const Post =  module.exports = mongoose.model('Post', postSchema);
+
+// module.exports.getPosts = function(callback, limit){
+//     Post.find(callback).limit(limit);
+// }
+
+module.exports.addPost = function(post, callback) {
+    Post.create(post, callback);
+}
