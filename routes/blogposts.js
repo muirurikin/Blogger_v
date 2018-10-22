@@ -4,13 +4,13 @@ const router = express.Router();
 const Post = require('../models/blogpost');
 
 router.get('/', (req, res) => {
-    // Post.getPosts(function(err, posts){
-    //     if (err) {
-	// 		console.log(err);
-    //     } else {
-	// 		res.render('blogs/posts', {posts: posts});
-	// 	}
-    // });
+    Post.getPosts(function(err, posts){
+        if (err) {
+			console.log(err);
+        } else {
+			res.render('blogs/posts', {posts: posts});
+		}
+    });
 });
 
 router.get('/new', (req, res) => {

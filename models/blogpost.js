@@ -14,9 +14,9 @@ const postSchema = mongoose.Schema({
 postSchema.plugin(passportLocalMongoose);
 const Post =  module.exports = mongoose.model('Post', postSchema);
 
-// module.exports.getPosts = function(callback, limit){
-//     Post.find(callback).limit(limit);
-// }
+module.exports.getPosts = function(callback, limit){
+    Post.find(callback).limit(limit);
+}
 
 module.exports.addPost = function(post, callback) {
     Post.create(post, callback);
