@@ -35,3 +35,8 @@ module.exports.updatePost = function(id, post, options, callback) {
     }
     Post.findOneAndUpdate(query, update, options, callback);
 }
+
+module.exports.removePost = function(id, callback) {
+    let query = {_id: id};
+    Post.remove(query, callback);
+}

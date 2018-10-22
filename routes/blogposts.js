@@ -59,7 +59,14 @@ router.put('/:id', (req, res) => {
 });
 
 router.delete('/:id', (req, res) => {
-    res.send('You reached the Delete route');
+	let id = req.params.id;
+	Post.removePost(id, function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.send('Your Post Has Been Deleted');
+		}
+	});
 });
 
 
