@@ -47,7 +47,15 @@ router.get('/:id/edit', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-    res.send('You reached the update route');
+	let id = req.params.id;
+	let post = req.body;
+	Post.updatePost(id, post, {}, function(err, post) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(post);
+		}
+	});
 });
 
 router.delete('/:id', (req, res) => {
