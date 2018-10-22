@@ -33,7 +33,13 @@ router.post('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    res.render('blogs/post');
+	Post.getPost(req.params.id, function(err, post) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(post);
+		}
+	});
 });
 
 router.get('/:id/edit', (req, res) => {

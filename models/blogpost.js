@@ -18,6 +18,10 @@ module.exports.getPosts = function(callback, limit){
     Post.find(callback).limit(limit);
 }
 
+module.exports.getPost = function(id, callback){
+    Post.findById(id, callback);
+}
+
 module.exports.addPost = function(post, callback) {
     Post.create(post, callback);
 }
