@@ -1,3 +1,42 @@
 <% include ../partials/head %>
-    <h1>This the posts page</h1>
+    <header class="ui masthead" style="background: linear-gradient(90deg, #9d9e9d 10%, rgb(19, 223, 195) 90%)">
+        <div class="ui main text container">
+            <div class="row">
+                <div class="introduction">
+                    <div class="site-heading">
+                        <h3 class="ui inverted header library">See Our Top Posts Below</h3>
+                        <span class="subheading tagline">Published By Some Of Our Best Bloggers</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+     <!-- Main Content -->
+    <div class="ui container">
+        <div class="row">
+            <div class="ui main">
+                <% posts.forEach(function (post) { %>
+                    <div class="post-preview">
+                        <a href="/posts/<%= post._id %>">
+                        <h2 class="post-title">
+                            <%= post.title %>
+                        </h2>
+                        <h3 class="post-subtitle">
+                            <%= post.body %>
+                        </h3>
+                        </a>
+                        <p class="post-meta">Posted by
+                        <a href="/users/profile"><%= post.author %></a>
+                        on <%= post.created %></p>
+                    </div>
+                <% }) %>
+                <hr>
+                <!-- Pager -->
+                <div class="clearfix">
+                    <a class="ui huge teal basic button" href="#">Older Posts &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
 <% include ../partials/footer %>
