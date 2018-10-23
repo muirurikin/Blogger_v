@@ -8,7 +8,8 @@ const passportLocalMongoose = require('passport-local-mongoose');
 
 const config = require('./config/config');
 
-mongoose.connect(config.MONGODB_URI);
+mongoose.set('useCreateIndex', true);
+mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true });
 
 const User = require('./models/user');
 const Post = require('./models/blogpost');
