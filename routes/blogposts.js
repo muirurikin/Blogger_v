@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
 	let post = {
 		title: req.body.title,
 		author: req.body.author,
-		body: req.body.pbody
+		body: req.body.body
 	}
 	Post.addPost(post, function(err, post) {
 		if (err) {

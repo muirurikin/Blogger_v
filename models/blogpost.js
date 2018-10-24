@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const postSchema = mongoose.Schema({
-    title: String,
-    author: String,
-    body: String,
+    title: { type: String },
+    author: { type: String },
+    body: { type: String },
     created: {
         type: Date,
         default: Date.now
