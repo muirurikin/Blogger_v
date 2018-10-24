@@ -1,5 +1,25 @@
 <% include ../partials/head %>
 
     <h1 class="container change">This the posts new page</h1>
+    <div class="ui main text container segment">
+        <div class="ui huge header">Add A new Blog Post Below</div>
+        <form action="/posts" method="post" class="ui form">
+          <div class="field">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Blog Post Title">
+          </div>
+          <div class="field">
+            <label>Author</label>
+            <input type="text" name="author" placeholder="Author Name">
+          </div>
+          <div class="field">
+            <label>Post Content</label>
+            <textarea name="body"></textarea>
+          </div>
+          <div class="field">
+            <input class="ui teal big basic button"type="submit">
+          </div>
+        </form>
+    </div>
     
 <% include ../partials/footer %>
