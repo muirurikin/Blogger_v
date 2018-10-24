@@ -11,6 +11,10 @@ userSchema.plugin(passportLocalMongoose);
 
 const User = module.exports = mongoose.model('User', userSchema);
 
-module.exports.addUser = function(user, callback) {
+module.exports.getUser = function(id, callback) {
+    User.findById(id, callback);
+};
+
+module.exports.addUser  = function(user, callback) {
     User.create(user, callback);
-}
+};

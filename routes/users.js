@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../models/user');
+
 router.get('/', (req, res) => {
     res.send('Hello Users');
 });
@@ -23,7 +24,14 @@ router.post('/', (req, res) => {
     });
 });
 router.get('/:id', (req, res) => {
-    res.send('User Profile Page');
+    let id = req.params.id;
+    User.getUser(id, function(err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(user);
+        }
+    })
 });
 router.get('/:id/edit', (req, res) => {
     res.send('User Edit Page');
