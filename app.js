@@ -14,6 +14,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true });
 const User = require('./models/user');
 const Post = require('./models/blogpost');
 const routes = require('./routes/index');
+const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/blogposts');
 
 const app = express();
@@ -39,6 +40,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use('/', routes);
+app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 
 const port = config.PORT || 3000;
