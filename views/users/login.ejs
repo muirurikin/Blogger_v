@@ -1,0 +1,39 @@
+<% include ../partials/head %>
+
+    <div class="ui change logreg">
+        <div class="ui container middle aligned center aligned grid segment">
+            <div class="column">
+                <h2 class="ui white image header">
+                    <div class="content">
+                        Log-In To Your Account
+                    </div>
+                </h2>
+                <form action="/login" method="POST" class="ui large form">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                            <label for="username">Username</label>
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="email" placeholder="E-mail address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <div class="ui fluid large teal submit button">Login</div>
+                    </div>
+                    <div class="ui error message"></div>  
+                </form>
+                <div class="ui message">
+                    New To Us?
+                    <a href="/register">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% include ../partials/footer %>

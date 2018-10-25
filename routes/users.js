@@ -3,11 +3,11 @@ const router = express.Router();
 
 const User = require('../models/user');
 
-router.get('/', (req, res) => {
-    res.send('Hello Users');
+router.get('/login', (req, res) => {
+    res.render('users/login');
 });
 router.get('/new', (req, res) => {
-    res.send('Add New User');
+    res.render('users/register');
 });
 router.post('/', (req, res) => {
     let user = {
