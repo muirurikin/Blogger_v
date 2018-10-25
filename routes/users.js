@@ -40,7 +40,14 @@ router.put('/:id', (req, res) => {
     res.send('User Updated');
 });
 router.delete('/:id', (req, res) => {
-    res.send('User Deleted');
+    let id = req.params.id;
+    User.removeUser(id, function(err) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.send('User Deleted');
+        }
+    });
 });
 
 module.exports = router;
