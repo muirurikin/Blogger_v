@@ -36,9 +36,18 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
     res.send('User Edit Page');
 });
-router.put('/:id', (req, res) => {
-    res.send('User Updated');
+router.put('/:_id', (req, res) => {
+    let id = req.params._id;
+    let user = req.body;
+    User.updateUser(id, user, {}, function(err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(user);
+        }
+    })
 });
+
 router.delete('/:id', (req, res) => {
     let id = req.params.id;
     User.removeUser(id, function(err) {
