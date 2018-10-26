@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 
 const Post = require('../models/blogpost');
+const middleware = require('../middleware');
 
-router.get('/', (req, res) => {
+router.get('/',middleware.isLoggedIn, (req, res) => {
     Post.getPosts(function(err, posts){
         if (err) {
 			console.log(err);
