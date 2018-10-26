@@ -4,9 +4,6 @@ const router = express.Router();
 
 const User = require('../models/user');
 
-router.get('/login', (req, res) => {
-    res.render('users/login');
-});
 router.get('/register', (req, res) => {
     res.render('users/register');
 });
@@ -26,15 +23,29 @@ router.post('/register', (req, res) => {
         }
     });
 });
+
+router.get('/login', (req, res) => {
+    res.render('users/login');
+});
+
+router.post('/login', passport.authenticate('local', { successRedirect: '/posts', failureRedirect: '/users/login' }), (req, res) => {
+
+});
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.redirect('/');
+});
+
 router.get('/:id', (req, res) => {
     let id = req.params.id;
     User.getUser(id, function(err, user) {
         if (err) {
             console.log(err);
         } else {
-            res.json(user);
+            res.render('users/profile', {user: user});
         }
-    })
+    });
 });
 router.get('/:id/edit', (req, res) => {
     res.send('User Edit Page');
