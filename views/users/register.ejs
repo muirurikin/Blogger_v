@@ -1,0 +1,46 @@
+<% include ../partials/head %>
+
+    <div class="ui change logreg segment">
+        <div class="ui text container middle aligned center aligned grid">
+            <div class="column">
+                <h2 class="ui image header">
+                    <div class="content">
+                        Register Your Free Account
+                    </div>
+                </h2>
+                <form action="/users" method="POST" class="ui large form">
+                    <div class="ui stacked segment">
+                        <div class="field">
+                                <label for="username">Username</label>
+                                <div class="ui left icon input">
+                                    <i class="user icon"></i>
+                                    <input type="text" name="username" placeholder="Username">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="email">E-mail address</label>
+                            <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" name="email" placeholder="E-mail address">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label for="password">Password</label>
+                            <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                            </div>
+                        </div>
+                        <button class="ui fluid large teal submit button">Sign Up</button>
+                    </div>
+                    <div class="ui error message"></div>  
+                </form>
+                <div class="ui message">
+                    Already Have An Account?
+                    <a href="/users/login">Log In</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% include ../partials/footer %>
