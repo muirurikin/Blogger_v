@@ -127,10 +127,12 @@ i.icon {
 .container.change {
     margin-top: 2.0em;
 }
-.logreg {
-    margin: 0 ;
-    text-align: center;
-    padding-top: 100px; 
+.logreg.segment {
     height: 100%;
     background: linear-gradient(90deg, #9d9e9d 10%, rgb(19, 223, 195) 90%);
+}
+.column {
+    margin: 18% auto;
+    box-sizing: border-box;
+    max-width: 450px;
 }
