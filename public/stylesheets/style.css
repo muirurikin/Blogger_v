@@ -1,3 +1,6 @@
+body {
+    font-family: 'Lato', sans-serif;
+}
 header.masthead {
     margin-bottom: 50px;
     background: no-repeat center center;
@@ -29,6 +32,7 @@ header.masthead .site-heading h1 {
     font-size: 50px;
     margin-top: 0;
     font-weight: 100;
+    font-family: 'Lato', sans-serif;
 }
 header.masthead .page-heading h3,
 header.masthead .site-heading h3 {
@@ -43,7 +47,6 @@ header.masthead .site-heading .subheading {
     line-height: 1.1;
     display: block;
     margin: 10px 0 0;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; 
 }
 @media only screen and (min-width: 768px) {
     header.masthead .page-heading h1,
@@ -65,12 +68,12 @@ header.masthead .post-heading .subheading {
     font-size: 24px;
     font-weight: 600;
     margin: 10px 0 30px;
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+}
 header.masthead .post-heading .meta {
     font-size: 20px;
     font-weight: 300;
     font-style: italic;
-    font-family: 'Lora', 'Times New Roman', serif; }
+}
 header.masthead .post-heading .meta a {
     color: white; }
 @media only screen and (min-width: 768px) {
@@ -121,7 +124,7 @@ header.masthead .post-heading .meta a {
     display: block;
     text-align: center;
 }
-i.icon {
+i.idea {
     font-size: 2em;
 }
 .container.change {
@@ -135,4 +138,5 @@ i.icon {
     margin: 18% auto;
     box-sizing: border-box;
     max-width: 450px;
+    background: #dcdcdd;
 }
