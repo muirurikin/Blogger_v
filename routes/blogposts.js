@@ -14,7 +14,7 @@ router.get('/',middleware.isLoggedIn, (req, res) => {
     });
 });
 
-router.get('/new', (req, res) => {
+router.get('/new', middleware.isLoggedIn, (req, res) => {
     res.render('blogs/new');
 });
 
@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 		title: req.body.title,
 		author: req.body.author,
 		body: req.body.body
-	}
+	};
 	Post.addPost(post, function(err, post) {
 		if (err) {
 			console.log(err);
