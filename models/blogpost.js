@@ -1,42 +1,39 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
-const postSchema = mongoose.Schema({
-    title: { type: String },
-    author: { type: String },
-    body: { type: String },
-    created: {
-        type: Date,
-        default: Date.now
-    }
+const postSchema = new mongoose.Schema({
+    title: { type: String, require:true },
+    author: { type: String, require: true},
+    body: { type: String, require:true },
+    created: { type: Date, default: Date.now }
 });
 
 postSchema.plugin(passportLocalMongoose);
 const Post =  module.exports = mongoose.model('Post', postSchema);
 
-module.exports.getPosts = async function(callback, limit) {
-    await Post.find(callback).limit(limit);
-}
+module.exports.getPosts   = function(callback, limit) {
+    Post.find(callback).limit(limit);
+};
 
-module.exports.getPost = function(id, callback){
-    Post.findById(id, callback);
-}
-
-module.exports.addPost = function(post, callback) {
+module.exports.addPost    = function(post, callback) {
     Post.create(post, callback);
-}
+};
 
-module.exports.updatePost = function(id, post, options, callback) {
+module.exports.getPost    = function(id, callback) {
+    Post.findById(id, callback);
+};
+
+module.exports.updatePost = function(id, user, options, callback) {
     let query = {_id: id};
     let update = {
         title: post.title,
         author: post.author,
-        body: post.pbody
-    }
+        body: post.body
+    };
     Post.findOneAndUpdate(query, update, options, callback);
-}
+};
 
 module.exports.removePost = function(id, callback) {
     let query = {_id: id};
-    Post.remove(query, callback);
-}
+    Post.findOneAndDelete(query, callback);
+};

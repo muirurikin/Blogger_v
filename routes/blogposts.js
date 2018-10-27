@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.send(`You reached the Post Route ${post}`);
+			res.json(post);
 		}
 	});
 });
