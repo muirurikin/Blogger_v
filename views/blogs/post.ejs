@@ -1,5 +1,42 @@
 <% include ../partials/head %>
 
     <h1 class="container change">This the posts show (one) page</h1>
+    <div class="ui middle aligned stackable grid container">
+        <div class="row">
+            <div class="five wide column">
+                <img src="/img/sauna.jpg" class="ui large bordered rounded image">
+            </div>
+            <div class="ten wide left floated column">
+                <div class="post-preview">
+                    <h2 class="post-title">
+                        <%= post.title %>
+                    </h2>
+                    <p class="post-subtitle">
+                        <%= post.body %>
+                    </p>
+                    <p class="divider"></p>
+                    <hr>
+                </div>
+                <div class="ui text container">
+                    <div class="row">
+                        <div class="ui stacked segment">
+                            <div class="center aligned column">
+                                <div class="ui header">Leave A comment below</div>
+                                <form action="/posts" method="POST" class="ui form">
+                                    <div class="field">
+                                        <label>Comment</label>
+                                        <textarea name="comment" cols="20" rows="5"></textarea>
+                                    </div>
+                                    <div class="field">
+                                        <input class="ui inverted green button" type="submit" value="Add Comment">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 <% include ../partials/footer %>

@@ -38,7 +38,7 @@ router.get('/:id', (req, res) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('blogs/post')
+			res.render('blogs/post', {post: post});
 		}
 	});
 });
