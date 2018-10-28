@@ -84,6 +84,11 @@ header.masthead .post-heading .meta a {
     header.masthead .post-heading .subheading {
         font-size: 30px; } 
 }
+/* 
+========
+  POST
+========
+*/
 .post-preview > a {
     color: #333333;
 }
@@ -91,31 +96,34 @@ header.masthead .post-heading .meta a {
       text-decoration: none;
       color: #0085A1;
 }
-.post-preview > a > .post-title {
+.post-preview > .post-title {
       font-size: 30px;
       margin-top: 30px;
       margin-bottom: 10px;
 }
-.post-preview > a > .post-subtitle {
+.post-preview > .post-subtitle {
     font-weight: 300;
     margin: 0 0 10px;
+    color: #777777;
 }  
 .post-preview > .post-meta {
     font-size: 18px;
     font-style: italic;
     margin-top: 0;
-    color: #777777;
+    color: #333333;
+    font-weight: normal;
+    width: 65%;
 }
 .post-preview > .post-meta > a {
     text-decoration: none;
-    color: #333333;
+    color: #777777;
 }
-.post-preview > .post-meta > a:focus, .post-preview > .post-meta > a:hover {
+.post-preview > .post-meta > a:focus,.post-meta > a:hover {
     text-decoration: underline;
     color: #0085A1;
 }  
 @media only screen and (min-width: 768px) {
-    .post-preview > a > .post-title {
+    .post-preview > .post-title {
         font-size: 36px; }
 }
 .introduction {
