@@ -3,20 +3,21 @@ const path = require('path');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
-const localStrategy = require('passport-local');
-const passportLocalMongoose = require('passport-local-mongoose');
+const LocalStrategy = require('passport-local');
+// const passportLocalMongoose = require('passport-local-mongoose');
 
-const config = require('./config/config');
+const { PORT, MONGODB_URI, secret } = require('./config/config');
 
 mongoose.set('useCreateIndex', true);
-mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 const User = require('./models/user');
-const Post = require('./models/blogpost');
+// const Post = require('./models/blogpost');
+// const Comment = require('./models/comment');
 const routes = require('./routes/index');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/blogposts');
-
+// const commentRoutes = require('./routes/comments');
 const app = express();
 
 
@@ -27,15 +28,15 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('express-session')({
-  secret: config.secret,
+  secret,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
 }));
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new localStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -47,11 +48,13 @@ app.use((req, res, next) => {
 app.use('/', routes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
+app.use('/posts/:id/comments', postRoutes);
 
-const port = config.PORT || 3000;
+
+const port = PORT;
 
 app.listen(port, () => {
   console.log(`Express app listening on port ${port}!`);
 });
 
-//Run app, then load http://localhost:port in a browser to see the output.
+// Run app, then load http://localhost:port in a browser to see the output.

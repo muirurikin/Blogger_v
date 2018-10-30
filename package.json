@@ -4,20 +4,33 @@
   "description": "Blogging app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "node_modules/bin/eslint .",
+    "test": "node_modules/.bin/_mocha --recursive --timeout=10000 tests",
+    "start": "node app"
+  },
+  "engines": {
+    "node": ">=8.6",
+    "yarn": ">=1.6"
   },
   "author": "Alexona",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
     "connect-flash": "^0.1.1",
     "ejs": "^2.6.1",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-chai-expect": "^2.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mocha": "^5.2.0",
     "express": "^4.16.3",
     "express-messages": "^1.0.1",
     "express-sanitizer": "^1.0.4",
     "express-session": "^1.15.6",
     "express-validator": "^5.2.0",
     "method-override": "^3.0.0",
+    "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "mongoose": "^5.3.2",
     "passport": "^0.4.0",

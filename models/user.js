@@ -2,30 +2,32 @@ const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, require:true },
-    email: { type: String, require: true, unique: true },
-    password: { type: String, require:true }
+  username: { type: String, require: true },
+  email: { type: String, require: true, unique: true },
+  password: { type: String, require: true },
 });
 
 userSchema.plugin(passportLocalMongoose);
 
-const User = module.exports = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema);
 
-module.exports.getUser    = function(id, callback) {
-    User.findById(id, callback);
+module.exports = User;
+
+module.exports.getUser = (id, callback) => {
+  User.findById(id, callback);
 };
 
-module.exports.updateUser = function(id, user, options, callback) {
-    let query = {_id: id};
-    let update = {
-        username: user.username,
-        email: user.email,
-        password: user.password
-    };
-    User.findOneAndUpdate(query, update, options, callback);
+module.exports.updateUser = (id, user, options, callback) => {
+  const query = { _id: id };
+  const update = {
+    username: user.username,
+    email: user.email,
+    password: user.password,
+  };
+  User.findOneAndUpdate(query, update, options, callback);
 };
 
-module.exports.removeUser = function(id, callback) {
-    let query = {_id: id};
-    User.findOneAndDelete(query, callback);
+module.exports.removeUser = (id, callback) => {
+  const query = { _id: id };
+  User.findOneAndDelete(query, callback);
 };

@@ -22,7 +22,7 @@
                         <div class="ui stacked segment">
                             <div class="center aligned column">
                                 <div class="ui header">Leave A comment below</div>
-                                <form action="/posts" method="POST" class="ui form">
+                                <form action="/posts/<%= post._id %>/comments" method="POST" class="ui form">
                                     <div class="field">
                                         <label>Comment</label>
                                         <textarea name="comment" cols="20" rows="5"></textarea>
