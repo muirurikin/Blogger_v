@@ -20,6 +20,7 @@ const postRoutes = require('./routes/blogposts');
 // const commentRoutes = require('./routes/comments');
 const app = express();
 
+app.locals.moment = require('moment');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

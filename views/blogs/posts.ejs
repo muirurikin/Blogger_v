@@ -27,7 +27,7 @@
                             <a href="/posts/<%= post._id %>" class="ui large button right floated">Read More</a>
                             <p class="post-meta left floated">Posted by
                             <a href="/users/profile"><%= post.author %></a>
-                            on <%= post.created %></p>
+                            on <%= moment(post.created).format("MM-DD-YYYY") %></p>
                             <p class="divider"></p>
                             <hr>
                         </div>
