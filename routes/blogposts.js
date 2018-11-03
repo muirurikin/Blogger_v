@@ -3,9 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 const Post = require('../models/blogpost');
-const middleware = require('../middleware');
+const { isLoggedIn } = require('../middleware');
 
-router.get('/', middleware.isLoggedIn, (req, res) => {
+router.get('/', isLoggedIn, (req, res) => {
   Post.getPosts((err, posts) => {
     if (err) {
       throw err;
@@ -15,7 +15,7 @@ router.get('/', middleware.isLoggedIn, (req, res) => {
   });
 });
 
-router.get('/new', middleware.isLoggedIn, (req, res) => {
+router.get('/new', isLoggedIn, (req, res) => {
   res.render('blogs/new');
 });
 
