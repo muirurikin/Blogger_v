@@ -1,37 +1,21 @@
 const express = require('express');
 const passport = require('passport');
-const expressJoi = require('express-joi');
-const { check, validationResult } = require('express-validator/check');
+const { celebrate, Joi, errors } = require('celebrate');
 
-const app = express();
 const router = express.Router();
 
 const User = require('../models/user');
 
-app.use(express.json());
+
 router.get('/register', (req, res) => {
   res.render('users/register');
 });
 
-const getUsersSchema = {
-  username: expressJoi.Joi.types.String().alphanum().min(2).max(20),
-  email: expressJoi.Joi.types.String().email({ minDomainAtoms: 2 }),
-  password: expressJoi.Joi.types.String().regex(/^[a-zA-Z0-9]{3,30}$/),
-};
-
-router.post('/register', expressJoi.joiValidate(getUsersSchema), [
-  check('username').isString(),
-  check('email').isEmail(),
-  check('password').isLength({ min: 4 }),
-], (req, res) => {
+router.post('/register', (req, res) => {
   const user = new User({
     username: req.body.username,
     email: req.body.email,
   });
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
-  }
 
   User.register(user, req.body.password, (err) => {
     if (err) {
@@ -39,10 +23,14 @@ router.post('/register', expressJoi.joiValidate(getUsersSchema), [
       throw err;
     } else {
       passport.authenticate('local')(req, res, () => {
-        res.redirect('/profile');
+        res.redirect('/users/profile');
       });
     }
   });
+});
+
+router.get('/profile', (req, res) => {
+  res.render('users/profile');
 });
 
 router.get('/login', (req, res) => {

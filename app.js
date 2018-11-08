@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local');
+const { errors } = require('celebrate');
 // const passportLocalMongoose = require('passport-local-mongoose');
 
 const { PORT, MONGODB_URI, secret } = require('./config/config');
@@ -36,6 +37,9 @@ app.use(require('express-session')({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+// catch Joi errors
+app.use(errors());
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
