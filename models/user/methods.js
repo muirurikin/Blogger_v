@@ -1,8 +1,3 @@
-const getUser = (id, callback) => {
-  User.findById(id, callback);
-};
-
-
 module.exports.updateUser = (id, user, options, callback) => {
   const query = { _id: id };
   const update = {
@@ -18,8 +13,8 @@ module.exports.removeUser = (id, callback) => {
   User.findOneAndDelete(query, callback);
 };
 
-module.exports = {
-  getUser,
-  updateUser,
-  removeUser,
-};
+module.exports = (UserSchema) => {
+  UserSchema.methods.getUser = async function getUser(id) {
+    const user = await this.findById({ id }).exec()
+  }
+}

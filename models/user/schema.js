@@ -12,5 +12,5 @@ const UserSchema = new Schema({
 userSchema.plugin(passportLocalMongoose);
 
 module.exports = {
-  UserSchema,
+  UserSchema
 };

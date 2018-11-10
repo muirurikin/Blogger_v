@@ -5,7 +5,7 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const LocalStrategy = require('passport-local');
 const { errors } = require('celebrate');
-// const passportLocalMongoose = require('passport-local-mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const { PORT, MONGODB_URI, secret } = require('./config/config');
 
