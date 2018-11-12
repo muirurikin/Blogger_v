@@ -78,15 +78,14 @@ router.put('/:_id', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   const { id } = req.params;
-  User.removeUser(id, (err) => {
-    if (err) {
-      throw err;
-    } else {
-      res.send('User Deleted');
-    }
-  });
+  try {
+    User.removeUser(id);
+    await res.send('User Deleted');
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;

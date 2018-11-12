@@ -2,24 +2,32 @@ const express = require('express');
 
 const router = express.Router();
 
-const Post = require('../models/blogpost');
+const Post = require('../models/index');
 const { isLoggedIn } = require('../middleware');
 
-router.get('/', isLoggedIn, (req, res) => {
-  Post.getPosts((err, posts) => {
-    if (err) {
-      throw err;
-    } else {
-      res.render('blogs/posts', { posts });
-    }
-  });
+router.get('/', isLoggedIn, async (req, res) => {
+  try {
+    Post.getPosts(posts);
+    await res.render('blogs/posts', { posts });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    User.removeUser(id);
+    await res.send('User Deleted');
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 router.get('/new', isLoggedIn, (req, res) => {
   res.render('blogs/new');
 });
 
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
   const { title, author, body } = req.body;
   const post = {
     title,
