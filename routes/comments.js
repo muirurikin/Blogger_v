@@ -23,4 +23,17 @@ router.post('/', (req, res) => {
   });
 });
 
+router.put('/:id', (req, res) => {
+  const { id } = req.params;
+  const comment = req.body;
+  Post.updateComment(id, comment, {}, (err, updatedComment) => {
+    if (err) {
+      throw err;
+    } else {
+      res.json(updatedComment);
+    }
+  });
+});
+
+
 module.exports = router;
